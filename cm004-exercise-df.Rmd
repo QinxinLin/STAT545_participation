@@ -1,0 +1,42 @@
+---
+title: "Data Frame Exploration"
+output: html_document
+---
+
+## LaTeX Equations in R Markdown
+
+Here is an equation:
+
+$$\alpha = 5 + 2$$
+Inline equation: $\alpha = 5 + 2$.
+
+## Data frame exploration
+
+### Setting up
+
+```{r}
+library(gapminder)
+```
+
+### What is a data frame?
+
+It is a tabular data. 
+
+```{r}
+gapminder
+```
+
+### Exploration of data frames
+
+```{r}
+head(gapminder)
+str(gapminder)
+summary(gapminder)
+```
+
+### Extracting columns/"variables"
+
+```{r}
+gapminder$lifeExp
+gapminder$gdpPercap
+```
