@@ -1,0 +1,11 @@
+---
+title: "Data Frame Exploration"
+output: html_document
+---
+# Exploration 
+```{r}
+library(gapminder)
+plot(lifeExp~year,gapminder)
+```
+
+
