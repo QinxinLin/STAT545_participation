@@ -1,0 +1,31 @@
+---
+title: "cm005-exercise"
+output: html_document
+---
+
+```{r}
+library(gapminder)
+library(tidyverse)
+```
+
+## select
+```{r}
+select(gapminder,year,lifeExp,country)
+select(gapminder,country:lifeExp)
+select(gapminder,-lifeExp)
+select(gapminder,continent,everything())
+rename(gapminder,cont=continent)
+```
+
+## arrange
+```{r}
+arrange(gapminder,year)
+arrange(gapminder,desc(year))
+arrange(gapminder,year,lifeExp)
+```
+
+## filter
+```{r}
+filter(gapminder,pop>1000000)
+filter(gapminder,continent=="Asia")
+```
