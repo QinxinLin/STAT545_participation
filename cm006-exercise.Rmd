@@ -1,0 +1,58 @@
+---
+title: "Cm006-exercise"
+output: github_document
+---
+
+---
+title: "Cm006-exercise"
+output: github_document
+---
+```{r}
+library(tidyverse)
+library(gapminder)
+library(scales)
+```
+
+## scatterplot
+```{r}
+ggplot(data=gapminder,aes(x=gdpPercap, y = lifeExp)) + geom_point()
+```
+
+## histogram and density plot
+```{r}
+ggplot(data=gapminder,aes(x=lifeExp)) + geom_histogram(bandwith=50) 
+ggplot(data=gapminder,aes(x=lifeExp)) + geom_density() 
+```
+
+## box and violin
+```{r}
+ggplot(data=gapminder,aes(x=continent,y=log(pop)))+geom_boxplot()
+ggplot(data=gapminder,aes(x=continent,y=log(pop)))+geom_violin()
+```
+
+## jitter plot
+```{r}
+ggplot(data=gapminder,aes(x=continent,y=log(pop)))+
+  geom_point()+
+   geom_jitter()
+```
+
+## time/line plot
+```{r}
+filter(gapminder,country=="Canada") %>%
+  ggplot(aes(x=year,y=lifeExp))+geom_point()
+
+ggplot(gapminder,aes(x=country,y=lifeExp))+geom_line()
+```
+
+## path plot
+```{r}
+ggplot(gapminder,aes(x=gdpPercap,y=lifeExp))+geom_point()+geom_line()
+```
+
+## Bar plot
+```{r}
+f<-filter(gapminder,year==2007)%>%group_by(continent)%>%
+    summarise(count=n())%>%mutate(pct=count/sum(count))
+ggplot(f,aes(x=continent,y=pct))+geom_bar(stat="identity")
+```
