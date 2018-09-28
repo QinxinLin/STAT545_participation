@@ -1,6 +1,6 @@
 ---
 title: "Data Frame Exploration"
-output: html_document
+output: github_document
 ---
 # Exploration 
 ```{r}
