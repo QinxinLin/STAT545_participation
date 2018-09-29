@@ -1,0 +1,82 @@
+---
+title: "Cm008-exercise"
+output: github_document
+---
+
+```{r}
+library(gapminder)
+library(tidyverse)
+```
+
+## mutate 
+```{r}
+gapminder %>%
+  mutate(gdp=gdpPercap*pop,
+         gdpBill=round(gdp/10^9,2))
+```
+
+```{r}
+gapminder %>%
+  mutate(lifeExp=if_else(country=="Canada"&year==1952,70,lifeExp))%>%
+  filter(country=="Canada")
+```
+
+```{r}
+filter(gapminder,country=="Canada")
+```
+
+```{r}
+gapminder%>%
+  mutate(cc=paste(country,continent,sep=", "))
+```
+
+## summarize and group_by
+```{r}
+gapminder%>%
+  summarize(me = mean(lifeExp),
+            med = median(lifeExp))
+```
+
+```{r}
+gapminder%>%
+  group_by(continent,country)%>%
+  summarize(med=median(gdpPercap))%>%
+  summarize(me=median(med))
+```
+
+```{r}
+gapminder%>%
+  mutate(hvsl=if_else(lifeExp>60,"high","low"))%>%
+  group_by(continent,hvsl)%>%
+  summarize(med=median(gdpPercap))
+```
+
+```{r}
+gapminder%>%
+  group_by(continent)%>%
+  summarize(n=n_distinct(country))
+```
+
+## grouped mutate
+
+```{r}
+gapminder%>%
+  group_by(country)%>%
+  mutate(growth=pop-first(pop))
+```
+
+```{r}
+gapminder%>%
+  group_by(country)%>%
+  mutate(growth=pop-pop[year==1972])
+```
+
+```{r}
+group_by(gapminder, continent, country)%>%
+  mutate(l=lifeExp-lag(lifeExp))%>%
+  summarize(n=min(l,na.rm=TRUE))%>%
+  top_n(1, wt=desc(n))%>%
+  arrange(n)
+```
+
+
