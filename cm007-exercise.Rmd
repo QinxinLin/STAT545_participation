@@ -2,4 +2,47 @@
 title: "Cm007-exercise"
 output: github_document
 ---
+```{r}
+library(gapminder)
+library(tidyverse)
+```
 
+## shape
+```{r}
+ggplot(gapminder,aes(x=gdpPercap, y=pop))+geom_point(aes(shape=continent))
+```
+
+## color
+```{r}
+ggplot(gapminder,aes(x=year,y=gdpPercap))+geom_point(aes(color=continent))
+ggplot(gapminder,aes(x=year,y=gdpPercap))+geom_point(aes(color=pop))
+```
+
+## facetting
+```{r}
+filter(gapminder, lifeExp>60, !(continent=="Oceania"))%>%
+  ggplot(aes(x=gdpPercap))+geom_histogram()+facet_wrap(~continent)
+```
+
+## Bubble Plot
+```{r}
+ggplot(gapminder,aes(x=year,y=gdpPercap,size=continent))+
+  geom_point(shape=21,colour = "mediumvioletred",fill = "springgreen")
+```
+
+## Complete Plot
+```{r}
+ggplot(gapminder, aes(x=gdpPercap, y=lifeExp, size=pop, color=continent))+
+  geom_point(shape=21)+facet_wrap(~year)
+```
+
+## path plot
+```{r}
+filter(gapminder, country=="Rwanda")%>%
+  ggplot(aes(x=year, y=gdpPercap))+geom_path()+
+  geom_point()+geom_line()
+```
+
+
+
+  
