@@ -1,0 +1,51 @@
+---
+title: "Cm009-exercise"
+output: github_document
+---
+```{r}
+library(gapminder)
+library(tidyverse)
+tibble(x=1:5,
+       y=1,
+       z=x^2+y)
+tribble(
+  ~x,~y,~z,
+  1,2,3,
+  4,5,6)
+
+write_delim(iris,"iris.txt",delim="$")
+read_delim("iris.txt",delim = "$")
+lotr1<-read_csv("https://raw.githubusercontent.com/jennybc/lotr-tidy/master/data/The_Fellowship_Of_The_Ring.csv")
+lotr2<-read_csv("https://raw.githubusercontent.com/jennybc/lotr-tidy/master/data/The_Two_Towers.csv")
+lotr3<-read_csv("https://raw.githubusercontent.com/jennybc/lotr-tidy/master/data/The_Return_Of_The_King.csv")
+lotr1
+lotr2
+lotr3
+
+lotr<-bind_rows(lotr1,lotr2,lotr3)
+gather(lotr,key = "gender", value = "word", Female:Male)
+gather(lotr, key = "gender", value = "word", contains("ale"))
+
+list1<-list(lotr1, lotr2, lotr3)
+do.call(bind_rows,list1)
+
+lotr_tidy<-read_csv("https://raw.githubusercontent.com/jennybc/lotr-tidy/master/data/lotr_tidy.csv")
+a<-spread(lotr_tidy,key = "Race", value = "Words")
+gather(a,key="race",value="value",Elf:Man )
+
+lotr_tidy
+
+unite(lotr_tidy, race_gender, Race, Gender)
+
+mtcars
+
+expand(mtcars, vs, cyl)
+expand(mtcars, nesting(vs,cyl))
+
+
+
+
+
+```
+
+
