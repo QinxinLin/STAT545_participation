@@ -481,7 +481,7 @@ list:
     ## $fav_fun
     ## function (x) 
     ## .Internal(typeof(x))
-    ## <bytecode: 0x7fd0e3303d40>
+    ## <bytecode: 0x7ffcd6247540>
     ## <environment: namespace:base>
 
 Subsetting a list works similarly to vectors. Try subsetting the first
